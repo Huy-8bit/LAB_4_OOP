@@ -33,6 +33,7 @@ public:
     void set_salary(unsigned int salary);
     void set_number_of_working_days(unsigned int number_of_working_days);
     // other functions
+    void input();
     void print();
     void delete_personnel();
     ~personnel();
@@ -100,6 +101,20 @@ void personnel::set_salary(unsigned int salary) {
 void personnel::set_number_of_working_days(unsigned int number_of_working_days) {
     this->number_of_working_days = number_of_working_days;
 }
+void personnel::input() {
+    cout << "Enter name: ";
+    getline(cin, name);
+    cout << "Enter id: ";
+    getline(cin, id);
+    cout << "Enter description: ";
+    getline(cin, description);
+    cout << "Enter salary: ";
+    cin >> salary;
+    cin.ignore();
+    cout << "Enter number of working days: ";
+    cin >> number_of_working_days;
+    cin.ignore();
+}
 void personnel::print() {
     cout << "Name: " << name << endl;
     cout << "ID: " << id << endl;
@@ -127,12 +142,18 @@ int main() {
     personnel p1("John", "20john", "Programmer", 100000, 20);
     personnel p2("Mary", 20);
     personnel p3(p1);
+    personnel p4;
+    
+    p4.input();
+
     p1.print();
     cout << endl;
     p2.print();
     cout << endl;
     p3.print();
-
+    cout << endl;
+    p4.print();
+    
     cout << endl << "affter delete_personnel: " << endl << endl;
     p1.delete_personnel();
     p1.print();
