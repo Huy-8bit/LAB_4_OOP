@@ -34,7 +34,7 @@ public:
     void set_number_of_working_days(unsigned int number_of_working_days);
     // other functions
     void input();
-    void setup_id(string name);
+    string setup_id(string name);
     void print();
     ~personnel();
 };
@@ -104,8 +104,8 @@ void personnel::set_number_of_working_days(unsigned int number_of_working_days) 
 void personnel::input() {
     cout << "Enter name: ";
     getline(cin, name);
-    // cout << "Enter id: ";
-    // getline(cin, id);
+    cout << "Enter id: ";
+    getline(cin, id);
     cout << "Enter description: ";
     getline(cin, description);
     cout << "Enter salary: ";
@@ -114,15 +114,29 @@ void personnel::input() {
     cout << "Enter number of working days: ";
     cin >> number_of_working_days;
     cout << endl << endl;
-    setup_id(name);
+    if (id != setup_id(name)) {
+        cout << "Do you want to change this id: " << setup_id(name) << endl;
+        cout << "1. Yes" << endl;
+        cout << "2. No" << endl;
+        int choice;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        if (choice == 1) {
+            id = setup_id(name);
+        }
+        else {
+            cout << "your id is: " << id << endl;
+        }
+    }
 }
-void personnel::setup_id(string name) {
+string personnel::setup_id(string name) {
     // getting online last name
     string last_name = name.substr(name.find_last_of(" ") + 1);
     stringstream ss;
     ss << number_of_working_days;
     string number_of_working_days_string = ss.str();
-    id = number_of_working_days_string + "" + last_name;
+    string temp_id = number_of_working_days_string + "" + last_name;
+    return temp_id;
 }
 void personnel::print() {
     cout << "Name: " << name << endl;
