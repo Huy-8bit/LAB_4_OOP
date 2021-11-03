@@ -34,8 +34,8 @@ public:
     void set_number_of_working_days(unsigned int number_of_working_days);
     // other functions
     void input();
+    void setup_id(string name);
     void print();
-    void delete_personnel();
     ~personnel();
 };
 personnel::personnel() {
@@ -104,8 +104,8 @@ void personnel::set_number_of_working_days(unsigned int number_of_working_days) 
 void personnel::input() {
     cout << "Enter name: ";
     getline(cin, name);
-    cout << "Enter id: ";
-    getline(cin, id);
+    // cout << "Enter id: ";
+    // getline(cin, id);
     cout << "Enter description: ";
     getline(cin, description);
     cout << "Enter salary: ";
@@ -113,7 +113,16 @@ void personnel::input() {
     cin.ignore();
     cout << "Enter number of working days: ";
     cin >> number_of_working_days;
-    cin.ignore();
+    cout << endl << endl;
+    setup_id(name);
+}
+void personnel::setup_id(string name) {
+    // getting online last name
+    string last_name = name.substr(name.find_last_of(" ") + 1);
+    stringstream ss;
+    ss << number_of_working_days;
+    string number_of_working_days_string = ss.str();
+    id = number_of_working_days_string + "" + last_name;
 }
 void personnel::print() {
     cout << "Name: " << name << endl;
@@ -121,13 +130,6 @@ void personnel::print() {
     cout << "Description: " << description << endl;
     cout << "Salary: " << salary << endl;
     cout << "Number of working days: " << number_of_working_days << endl;
-}
-void personnel::delete_personnel() {
-    name = "";
-    id = "";
-    description = "";
-    salary = 0;
-    number_of_working_days = 0;
 }
 personnel::~personnel() {
     name = "undefined";
@@ -143,27 +145,20 @@ int main() {
     personnel p2("Mary", 20);
     personnel p3(p1);
     personnel p4;
-    
+
     p4.input();
 
-    p1.print();
-    cout << endl;
-    p2.print();
-    cout << endl;
-    p3.print();
-    cout << endl;
     p4.print();
-    
-    cout << endl << "affter delete_personnel: " << endl << endl;
-    p1.delete_personnel();
-    p1.print();
     cout << endl;
-    p2.delete_personnel();
-    p2.print();
+    // p1.print();
+    // cout << endl;
+    // p2.print();
+    // cout << endl;
+    // p3.print();
+    // cout << endl;
+
     cout << endl;
-    p3.delete_personnel();
-    p3.print();
-    cout << endl;
+
     return 0;
 }
 
