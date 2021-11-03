@@ -155,8 +155,8 @@ personnel::~personnel() {
 int main() {
     system("color 0a");
     system("cls");
-    personnel p1("John", "20john", "Programmer", 100000, 20);
-    personnel p2("Mary", 20);
+    personnel p1("David John", "20john", "Programmer", 100000, 20);
+    personnel p2("Olivia Mary", 20);
     personnel p3(p1);
     personnel p4;
 
@@ -164,15 +164,29 @@ int main() {
 
     p4.print();
     cout << endl;
-    // p1.print();
-    // cout << endl;
-    // p2.print();
-    // cout << endl;
-    // p3.print();
-    // cout << endl;
-
+    p1.print();
+    cout << endl;
+    p2.print();
+    cout << endl;
+    p3.print();
+    cout << endl;
     cout << endl;
 
+    p4.~personnel();
+    p3.~personnel();
+    p2.~personnel();
+    p1.~personnel();
+
+    p4.print();
+    cout << endl;
+    p1.print();
+    cout << endl;
+    p2.print();
+    cout << endl;
+    p3.print();
+    cout << endl;
+    cout << endl;
+    
     return 0;
 }
 
